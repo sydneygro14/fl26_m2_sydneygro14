@@ -8,20 +8,16 @@
 
 namespace aiws {
 
-// M2 PUBLIC-INTERFACE DESIGN TASK
-// Complete this class as a safe abstract polymorphic interface.
-// Keep the class name, operation name, parameter types, return type,
-// const qualification, and namespace unchanged.
+// safe abstract polymorphic base class for configurable chunking
+// virtual destructor allows deletion through a base-class pointer
+// pure virtual chunk() forces every derived strategy to implement it
+// and blocks direct instantiation of chunkingstrategy itself
 class ChunkingStrategy {
 public:
-    // TODO: make destruction safe through a base-class pointer.
-    ~ChunkingStrategy() = default;
+    virtual ~ChunkingStrategy() = default;
 
-    // TODO: make this a required polymorphic operation.
     virtual std::vector<Chunk> chunk(const Document&,
-                                     std::size_t) const {
-        return {};
-    }
+                                     std::size_t) const = 0;
 };
 
 }  // namespace aiws

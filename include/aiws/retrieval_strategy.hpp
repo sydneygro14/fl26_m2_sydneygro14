@@ -8,22 +8,17 @@
 
 namespace aiws {
 
-// M2 PUBLIC-INTERFACE DESIGN TASK
-// Complete this class as a safe abstract polymorphic interface.
-// Keep the class name, operation name, parameter types, return type,
-// const qualification, and namespace unchanged.
+// virtual destructor allows deletion through a base-class pointer
+// pure virtual search() forces every derived strategy to implement it
+// and blocks direct instantiation of retrievalstrategy itself
 class RetrievalStrategy {
 public:
-    // TODO: make destruction safe through a base-class pointer.
-    ~RetrievalStrategy() = default;
+    virtual ~RetrievalStrategy() = default;
 
-    // TODO: make this a required polymorphic operation.
     virtual std::vector<SearchResult> search(const std::string&,
                                              int,
                                              const std::vector<Chunk>&,
-                                             const CorpusIndex&) const {
-        return {};
-    }
+                                             const CorpusIndex&) const = 0;
 };
 
 }  // namespace aiws

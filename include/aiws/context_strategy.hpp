@@ -7,20 +7,16 @@
 
 namespace aiws {
 
-// M2 PUBLIC-INTERFACE DESIGN TASK
-// Complete this class as a safe abstract polymorphic interface.
-// Keep the class name, operation name, parameter types, return type,
-// const qualification, and namespace unchanged.
+// safe abstract polymorphic base class for configurable context construction
+// virtual destructor allows deletion through a base-class pointer
+// pure virtual build() forces every derived strategy to implement it
+// and blocks direct instantiation of contextstrategy itself
 class ContextStrategy {
 public:
-    // TODO: make destruction safe through a base-class pointer.
-    ~ContextStrategy() = default;
+    virtual ~ContextStrategy() = default;
 
-    // TODO: make this a required polymorphic operation.
     virtual std::vector<ContextItem> build(const std::vector<SearchResult>&,
-                                           std::size_t) const {
-        return {};
-    }
+                                           std::size_t) const = 0;
 };
 
 }  // namespace aiws
